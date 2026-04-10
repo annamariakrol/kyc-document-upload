@@ -115,26 +115,70 @@
       margin: 0 0 1.25rem;
       line-height: 1.55;
     }
-    .practices-panel {
-      margin: 0 0 1.35rem;
-      padding: 0.75rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      border-left: 4px solid var(--teal);
+    .practices-details {
+      margin: 0 0 1.1rem;
+      border: 1px solid #d8e8e8;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #f9fdfd 0%, #f6fafb 100%);
+      box-shadow: 0 1px 2px rgba(0, 77, 77, 0.04);
+    }
+    .practices-summary {
+      list-style: none;
+      padding: 0.5rem 0.65rem 0.5rem 1.65rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      line-height: 1.35;
+    }
+    .practices-summary::-webkit-details-marker { display: none; }
+    .practices-summary::marker { content: ""; }
+    .practices-summary::before {
+      content: "";
+      position: absolute;
+      left: 0.55rem;
+      top: 50%;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-right: 2px solid var(--teal);
+      border-bottom: 2px solid var(--teal);
+      transform: translateY(-65%) rotate(-45deg);
+      transition: transform 0.18s ease;
+      opacity: 0.85;
+    }
+    .practices-details[open] .practices-summary::before {
+      transform: translateY(-35%) rotate(45deg);
+    }
+    .practices-summary .muted {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .practices-details[open] .practices-summary {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.65);
+    }
+    .practices-inner {
+      padding: 0.65rem 0.75rem 0.75rem;
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      border-radius: 0 0 9px 9px;
     }
     .practices-figure {
       margin: 0;
-      text-align: center;
+      max-width: 100%;
     }
     .practices-figure img {
-      max-width: min(100%, 520px);
+      display: block;
+      max-width: min(100%, 300px);
       width: 100%;
       height: auto;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-      vertical-align: middle;
+      margin: 0 auto;
+      border-radius: 8px;
+      border: 1px solid #e8eef0;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     }
     .field { margin-bottom: 1.1rem; }
     .field-label {
@@ -382,16 +426,22 @@
             Você pode enviar um <strong>arquivo</strong> (JPEG, PNG ou PDF), como no fluxo atual, ou usar a <strong>câmera</strong> do dispositivo para capturar a foto do documento.
           </p>
 
-          <section class="practices-panel" aria-label="Melhores práticas para imagens">
-            <figure class="practices-figure">
-              <img
-                src="assets/melhores-praticas-instrucao.png"
-                alt="Melhores práticas para imagens: exemplos aprovado e reprovado, texto sobre validade do documento e fotos originais (não capturas de tela), conforme referência de produto."
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </section>
+          <details class="practices-details">
+            <summary class="practices-summary">
+              Melhores práticas para imagens
+              <span class="muted"> — toque ou clique para ver o exemplo (menor)</span>
+            </summary>
+            <div class="practices-inner">
+              <figure class="practices-figure">
+                <img
+                  src="assets/melhores-praticas-instrucao.png"
+                  alt="Melhores práticas para imagens: exemplos aprovado e reprovado, validade do documento, fotos originais."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </details>
 
           <div class="field">
             <span class="field-label" id="label-front">Frente do documento de identidade</span>
@@ -448,7 +498,7 @@
     </div>
   </div>
 
-  <p class="source-footer">Protótipo para revisão de UX — envio de documentos (arquivo ou câmera); instruções de imagem como <strong>uma imagem</strong> (referência de ecrã), sem modal. Site: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a>. <strong>Versão 2026-04-10</strong>. <em>Hard refresh</em> se precisar: Cmd+Shift+R / Ctrl+F5.</p>
+  <p class="source-footer">Protótipo — instruções em <strong>&lt;details&gt;</strong> (fechado por defeito) + imagem até 300px ao expandir. Site: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a>. <strong>Versão 2026-04-10-b</strong>. <em>Hard refresh</em>: Cmd+Shift+R / Ctrl+F5.</p>
   <p class="source-footer">Onboarding BR: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/" target="_blank" rel="noopener"><strong>Abrir — Confirmar dados</strong></a> · repasses / settings: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/payouts-settings.html" target="_blank" rel="noopener"><strong>Abrir — Configuração de pagamentos</strong></a> · arquivo local: <code>prototype/doctoralia-kyc-document-upload-camera.html</code></p>
 
   <div class="modal-backdrop" id="camera-modal" role="dialog" aria-modal="true" aria-labelledby="camera-title" hidden>
