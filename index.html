@@ -117,47 +117,25 @@
     }
     .practices-panel {
       margin: 0 0 1.35rem;
-      padding: 1.1rem 1.15rem 1.15rem;
-      background: linear-gradient(180deg, #f6faf9 0%, #f8fafb 100%);
+      padding: 0.75rem;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       border-left: 4px solid var(--teal);
     }
-    .practices-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin: 0 0 0.35rem;
-      color: var(--teal-dark);
-    }
-    .practices-intro {
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-      margin: 0 0 0.85rem;
-      line-height: 1.45;
-    }
     .practices-figure {
-      margin: 0 0 1rem;
+      margin: 0;
       text-align: center;
     }
     .practices-figure img {
-      max-width: min(100%, 420px);
+      max-width: min(100%, 520px);
       width: 100%;
       height: auto;
       border-radius: 10px;
       border: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
       vertical-align: middle;
     }
-    .practices-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      font-size: 0.8125rem;
-      color: #333;
-      line-height: 1.55;
-    }
-    .practices-list li { margin-bottom: 0.65rem; }
-    .practices-list strong { color: #222; }
-    .practices-list li:last-child { margin-bottom: 0; }
     .field { margin-bottom: 1.1rem; }
     .field-label {
       display: block;
@@ -404,29 +382,15 @@
             Você pode enviar um <strong>arquivo</strong> (JPEG, PNG ou PDF), como no fluxo atual, ou usar a <strong>câmera</strong> do dispositivo para capturar a foto do documento.
           </p>
 
-          <section class="practices-panel" aria-labelledby="practices-title">
-            <h2 class="practices-title" id="practices-title">Melhores práticas para imagens</h2>
-            <p class="practices-intro">
-              Aqui está uma demonstração ilustrando cenários aprovados e reprovados.
-            </p>
+          <section class="practices-panel" aria-label="Melhores práticas para imagens">
             <figure class="practices-figure">
               <img
-                src="assets/best-practices-reference.png"
-                alt="Aprovado: documento inteiro e legível no enquadramento. Reprovado: documento cortado ou fora do quadro."
+                src="assets/melhores-praticas-instrucao.png"
+                alt="Melhores práticas para imagens: exemplos aprovado e reprovado, texto sobre validade do documento e fotos originais (não capturas de tela), conforme referência de produto."
                 loading="lazy"
                 decoding="async"
               />
             </figure>
-            <ul class="practices-list">
-              <li>
-                <strong>Validade.</strong> Certifique-se de que todos os documentos de identidade sejam válidos.
-                Recomendamos enviar documentos com validade de pelo menos três meses além da data atual.
-              </li>
-              <li>
-                <strong>Fotos originais.</strong> Certifique-se de que as fotos enviadas dos documentos de identidade sejam originais e não capturas de tela.
-                Isso nos ajuda a validar sua identidade de forma eficiente e segura.
-              </li>
-            </ul>
           </section>
 
           <div class="field">
@@ -484,7 +448,7 @@
     </div>
   </div>
 
-  <p class="source-footer">Protótipo para revisão de UX — envio de documentos de identidade (arquivo ou câmera) + bloco &quot;Melhores práticas para imagens&quot;. Site dedicado: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a> (repositório <code>kyc-document-upload</code>). <strong>Versão 2026-04-10</strong>. Se vir versão antiga, faça <em>hard refresh</em>: Cmd+Shift+R (Mac) ou Ctrl+F5 (Windows).</p>
+  <p class="source-footer">Protótipo para revisão de UX — envio de documentos (arquivo ou câmera); instruções de imagem como <strong>uma imagem</strong> (referência de ecrã), sem modal. Site: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a>. <strong>Versão 2026-04-10</strong>. <em>Hard refresh</em> se precisar: Cmd+Shift+R / Ctrl+F5.</p>
   <p class="source-footer">Onboarding BR: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/" target="_blank" rel="noopener"><strong>Abrir — Confirmar dados</strong></a> · repasses / settings: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/payouts-settings.html" target="_blank" rel="noopener"><strong>Abrir — Configuração de pagamentos</strong></a> · arquivo local: <code>prototype/doctoralia-kyc-document-upload-camera.html</code></p>
 
   <div class="modal-backdrop" id="camera-modal" role="dialog" aria-modal="true" aria-labelledby="camera-title" hidden>
