@@ -181,6 +181,40 @@
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     }
     .field { margin-bottom: 1.1rem; }
+    .doc-type-field { margin-bottom: 1rem; }
+    .doc-type-select {
+      width: 100%;
+      max-width: 100%;
+      padding: 0.65rem 2rem 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      background: #fff
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23007d7d' d='M6 8L1 3h10z'/%3E%3C/svg%3E")
+        no-repeat right 0.75rem center;
+      color: #1a1a1a;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .doc-type-select:focus {
+      outline: 2px solid var(--teal);
+      outline-offset: 1px;
+    }
+    .doc-type-hint {
+      margin: 0.45rem 0 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .doc-upload-panel {
+      margin-top: 0.25rem;
+      padding-top: 0.35rem;
+      border-top: 1px dashed #d0dce0;
+    }
+    .doc-upload-panel[hidden] {
+      display: none !important;
+    }
     .field-label {
       display: block;
       font-weight: 600;
@@ -265,6 +299,11 @@
       border-radius: 8px;
       font-size: 0.8125rem;
       color: #1565c0;
+    }
+    .req-doc-lead {
+      margin: 0.35rem 0 0.5rem;
+      font-size: 0.8125rem;
+      line-height: 1.45;
     }
     .info-blue ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
     .info-blue li { margin-bottom: 0.35rem; }
@@ -423,61 +462,74 @@
           <h1 class="page-title">Envie seus documentos</h1>
           <p class="lead">
             Esta etapa faz parte da verificação da conta para confirmar identidade e atividade comercial.
-            Você pode enviar um <strong>arquivo</strong> (JPEG, PNG ou PDF), como no fluxo atual, ou usar a <strong>câmera</strong> do dispositivo para capturar a foto do documento.
+            Primeiro escolha o <strong>tipo de documento</strong>; em seguida envie a <strong>frente e o verso</strong> por arquivo ou pela <strong>câmera</strong> do celular ou computador.
           </p>
 
-          <details class="practices-details">
-            <summary class="practices-summary">
-              Melhores práticas para imagens
-              <span class="muted"> — toque ou clique para ver o exemplo (menor)</span>
-            </summary>
-            <div class="practices-inner">
-              <figure class="practices-figure">
-                <img
-                  src="assets/melhores-praticas-instrucao.png"
-                  alt="Melhores práticas para imagens: exemplos aprovado e reprovado, validade do documento, fotos originais."
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-            </div>
-          </details>
-
-          <div class="field">
-            <span class="field-label" id="label-front">Frente do documento de identidade</span>
-            <div class="upload-row" data-side="front">
-              <div class="filename-display" id="display-front" aria-labelledby="label-front" aria-live="polite">Nenhum arquivo selecionado</div>
-              <label class="btn-attach">
-                <input type="file" accept="image/jpeg,image/png,application/pdf" data-input="front" />
-                Selecionar arquivo
-              </label>
-              <button type="button" class="btn-cam" data-camera="front">Tirar foto</button>
-            </div>
+          <div class="field doc-type-field">
+            <label class="field-label" for="doc-type">Tipo de documento</label>
+            <select id="doc-type" class="doc-type-select" aria-controls="doc-upload-panel" autocomplete="off">
+              <option value="">Selecione o tipo de documento…</option>
+              <option value="identidade">Documento de identidade (ex.: RG)</option>
+              <option value="cnh">Carteira de motorista (CNH)</option>
+            </select>
+            <p class="doc-type-hint">Só depois desta escolha aparecem os campos de frente, verso e dicas de foto.</p>
           </div>
 
-          <div class="field">
-            <span class="field-label" id="label-back">Verso do documento de identidade</span>
-            <div class="upload-row" data-side="back">
-              <div class="filename-display" id="display-back" aria-labelledby="label-back" aria-live="polite">Nenhum arquivo selecionado</div>
-              <label class="btn-attach">
-                <input type="file" accept="image/jpeg,image/png,application/pdf" data-input="back" />
-                Selecionar arquivo
-              </label>
-              <button type="button" class="btn-cam" data-camera="back">Tirar foto</button>
+          <div id="doc-upload-panel" class="doc-upload-panel" hidden>
+            <details class="practices-details">
+              <summary class="practices-summary">
+                Melhores práticas para imagens
+                <span class="muted"> — toque ou clique para ver o exemplo</span>
+              </summary>
+              <div class="practices-inner">
+                <figure class="practices-figure">
+                  <img
+                    src="assets/melhores-praticas-instrucao.png"
+                    alt="Melhores práticas para imagens: exemplos aprovado e reprovado, validade do documento, fotos originais."
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </div>
+            </details>
+
+            <div class="field">
+              <span class="field-label" id="label-front">Frente</span>
+              <div class="upload-row" data-side="front">
+                <div class="filename-display" id="display-front" aria-labelledby="label-front" aria-live="polite">Nenhum arquivo selecionado</div>
+                <label class="btn-attach">
+                  <input type="file" accept="image/jpeg,image/png,application/pdf" data-input="front" />
+                  Selecionar arquivo
+                </label>
+                <button type="button" class="btn-cam" data-camera="front">Tirar foto</button>
+              </div>
             </div>
-          </div>
 
-          <div class="info-blue" role="note">
-            <strong>Requisitos</strong>
-            <ul>
-              <li>Formatos: JPEG, PNG e PDF (upload). Fotos pela câmera são gravadas como JPEG.</li>
-              <li>Resolução mínima recomendada: 600×600 px — o protótipo avisa se a captura for menor.</li>
-              <li>Tamanho máximo: 10 MB por arquivo.</li>
-              <li>Documentos aceitos: carteira de motorista, RG ou passaporte. Impressões de documento digital não são aceitas.</li>
-            </ul>
-          </div>
+            <div class="field">
+              <span class="field-label" id="label-back">Verso</span>
+              <div class="upload-row" data-side="back">
+                <div class="filename-display" id="display-back" aria-labelledby="label-back" aria-live="polite">Nenhum arquivo selecionado</div>
+                <label class="btn-attach">
+                  <input type="file" accept="image/jpeg,image/png,application/pdf" data-input="back" />
+                  Selecionar arquivo
+                </label>
+                <button type="button" class="btn-cam" data-camera="back">Tirar foto</button>
+              </div>
+            </div>
 
-          <button type="button" class="btn-submit" id="btn-send" disabled>Enviar</button>
+            <div class="info-blue" role="note">
+              <strong>Requisitos</strong>
+              <p id="req-doc-lead" class="req-doc-lead"></p>
+              <ul>
+                <li>Formatos: JPEG, PNG e PDF (upload). Fotos pela câmera são gravadas como JPEG.</li>
+                <li>Resolução mínima recomendada: 600×600 px — o protótipo avisa se a captura for menor.</li>
+                <li>Tamanho máximo: 10 MB por arquivo.</li>
+                <li>Impressões de documento digital podem ser recusadas; prefira foto do documento físico.</li>
+              </ul>
+            </div>
+
+            <button type="button" class="btn-submit" id="btn-send" disabled>Enviar</button>
+          </div>
 
           <p class="legal">
             Protótipo de UX — captura no navegador usa a API de mídia do dispositivo (<code>getUserMedia</code>).
@@ -498,7 +550,7 @@
     </div>
   </div>
 
-  <p class="source-footer">Protótipo — instruções em <strong>&lt;details&gt;</strong> (fechado por padrão) + imagem compacta ao expandir. Site: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a>. <strong>Versão 2026-04-10-b</strong>. <em>Hard refresh</em>: Cmd+Shift+R / Ctrl+F5.</p>
+  <p class="source-footer">Protótipo BR — <strong>tipo de documento</strong> (select) antes de frente/verso; instruções em <strong>&lt;details&gt;</strong>. Site: <a href="https://annamariakrol.github.io/kyc-document-upload/">annamariakrol.github.io/kyc-document-upload</a>. <strong>Versão 2026-04-10-c</strong>. <em>Hard refresh</em>: Cmd+Shift+R / Ctrl+F5.</p>
   <p class="source-footer">Onboarding BR: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/" target="_blank" rel="noopener"><strong>Abrir — Confirmar dados</strong></a> · repasses / settings: <a href="https://annamariakrol.github.io/brazil-payout-bank-prototype/payouts-settings.html" target="_blank" rel="noopener"><strong>Abrir — Configuração de pagamentos</strong></a> · arquivo local: <code>prototype/doctoralia-kyc-document-upload-camera.html</code></p>
 
   <div class="modal-backdrop" id="camera-modal" role="dialog" aria-modal="true" aria-labelledby="camera-title" hidden>
@@ -520,6 +572,19 @@
 
   <script>
     (function () {
+      const DOC_LABELS = {
+        identidade: {
+          front: "Frente do documento de identidade",
+          back: "Verso do documento de identidade",
+          req: "Envie frente e verso nítidos do documento de identidade (ex.: RG).",
+        },
+        cnh: {
+          front: "Frente da carteira de motorista (CNH)",
+          back: "Verso da carteira de motorista (CNH)",
+          req: "Envie frente e verso nítidos da CNH.",
+        },
+      };
+
       const state = {
         front: { file: null, objectUrl: null, thumbUrl: null, name: "", source: null },
         back: { file: null, objectUrl: null, thumbUrl: null, name: "", source: null },
@@ -527,6 +592,13 @@
       let cameraSide = null;
       let stream = null;
       let capturedBlob = null;
+      let selectedDocType = "";
+
+      const docTypeEl = document.getElementById("doc-type");
+      const uploadPanel = document.getElementById("doc-upload-panel");
+      const labelFront = document.getElementById("label-front");
+      const labelBack = document.getElementById("label-back");
+      const reqDocLead = document.getElementById("req-doc-lead");
 
       const modal = document.getElementById("camera-modal");
       const video = document.getElementById("camera-video");
@@ -587,8 +659,42 @@
       }
 
       function updateSubmit() {
-        btnSend.disabled = !(state.front.file && state.back.file);
+        const ready =
+          !!selectedDocType && uploadPanel && !uploadPanel.hidden && state.front.file && state.back.file;
+        btnSend.disabled = !ready;
       }
+
+      function clearAllUploads() {
+        revokeSide("front");
+        revokeSide("back");
+        updateDisplay("front");
+        updateDisplay("back");
+        document.querySelectorAll('input[type="file"][data-input]').forEach(function (inp) {
+          inp.value = "";
+        });
+        updateSubmit();
+      }
+
+      function applyDocType(type) {
+        selectedDocType = type || "";
+        if (!type || !DOC_LABELS[type]) {
+          uploadPanel.hidden = true;
+          reqDocLead.textContent = "";
+          clearAllUploads();
+          if (modal.classList.contains("open")) closeModal();
+          return;
+        }
+        uploadPanel.hidden = false;
+        const L = DOC_LABELS[type];
+        labelFront.textContent = L.front;
+        labelBack.textContent = L.back;
+        reqDocLead.textContent = L.req;
+        clearAllUploads();
+      }
+
+      docTypeEl.addEventListener("change", function () {
+        applyDocType(docTypeEl.value);
+      });
 
       function setFile(side, file, source) {
         revokeSide(side);
@@ -636,8 +742,15 @@
         btnUse.hidden = true;
         capturedBlob = null;
         hint.textContent = "";
-        document.getElementById("camera-title").textContent =
-          side === "front" ? "Foto — frente do documento" : "Foto — verso do documento";
+        var camTitle =
+          side === "front"
+            ? selectedDocType === "cnh"
+              ? "Foto — frente da CNH"
+              : "Foto — frente do documento de identidade"
+            : selectedDocType === "cnh"
+              ? "Foto — verso da CNH"
+              : "Foto — verso do documento de identidade";
+        document.getElementById("camera-title").textContent = camTitle;
 
         navigator.mediaDevices
           .getUserMedia({
@@ -733,7 +846,13 @@
       });
 
       btnSend.addEventListener("click", function () {
-        showToast("Protótipo: frente e verso prontos. Em produção enviaria ao backend / parceiro KYC.");
+        var opt = docTypeEl.options[docTypeEl.selectedIndex];
+        var name = opt ? opt.text.replace(/\s*\(ex\.:.*?\)\s*/i, "").trim() : "";
+        showToast(
+          "Protótipo: " +
+            name +
+            " — frente e verso prontos. Em produção enviaria ao backend / parceiro KYC."
+        );
       });
 
       modal.addEventListener("click", function (e) {
